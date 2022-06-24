@@ -16,4 +16,4 @@ or
     python3 gui.py
 ```
 
-NB : in order to run the app, you should have the python interpreter installed on your machine, if it's not the case, you can install it from [python.org](https://www.python.org) and then run the commands above.
+NB : in order to run the app, you should have the python interpreter installed on your machine, if it's not the case, you can download it from [python.org](https://www.python.org) and then run the commands above.
