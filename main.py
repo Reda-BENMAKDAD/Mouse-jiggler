@@ -8,6 +8,8 @@ from functools import partial
 monitor_width = pyautogui.size()[0]
 monitor_height = pyautogui.size()[1]
 
+# this creats a notification window 
+# and displays the message given as parameter
 def info(message):
     info_window = tkinter.Tk()
     info_window.title("Info")
@@ -17,7 +19,8 @@ def info(message):
     info_label.place(x=50, y=50)
     info_window.mainloop()
 
-    
+
+#the function that jiggles the mouse
 def jiggle():
     while True:
         x = randint(0, monitor_width)
@@ -26,19 +29,26 @@ def jiggle():
         sleep(20)
         
 
+# here the jiggle function will be ran in a separate process
+# to avoid blocking the main thread
 process = multiprocessing.Process(target=jiggle)
+
+
+# called on click of the start button
 def startproc(root, status_circle: tkinter.Canvas) -> None:
     global process
     if process.is_alive():
         info("mouse jiggler already running")
         return;
     else:
-        process = multiprocessing.Process(target=jiggle)
         process.start()
+        # this changes the color of the little square to green
+        # to indicate that the process is running
         status_circle.configure(bg="#00ff34")
         status_circle.update()
         root.update()
 
+# called on click of the stop button
 def stopproc(root, status_circle) -> None:
     global process
     if not process.is_alive():
@@ -46,10 +56,14 @@ def stopproc(root, status_circle) -> None:
         return;
     else :
         process.terminate()
+        # this changes the color of the little square to gray
+        # to indicate that the process is stopped
         status_circle.configure(bg="#6b706c")
         status_circle.update()
         root.update()
  
+# this function is called when the window is closed from the X button
+# it stops the jiggle process and closes the window
 def safe_close(root) -> None :
     global process
     if process.is_alive():
@@ -57,6 +71,7 @@ def safe_close(root) -> None :
 
     root.destroy(); 
 
+# main function that runs the main window
 def main():
     root = tkinter.Tk()
     root.title("Mouse jiggler")
