@@ -7,13 +7,13 @@
 usage:
 
 ```bash
-    python gui.py
+    python main.py
 ```
 
 or
 
 ```bash
-    python3 gui.py
+    python3 main.py
 ```
 
 NB : in order to run the app, you should have the python interpreter installed on your machine, if it's not the case, you can download it from [python.org](https://www.python.org) and then run the commands above.

@@ -20,7 +20,7 @@ def info(message):
     info_window.mainloop()
 
 
-#the function that jiggles the mouse
+# the function that jiggles the mouse
 def jiggle():
     while True:
         x = randint(0, monitor_width)
@@ -34,6 +34,7 @@ def jiggle():
 process = multiprocessing.Process(target=jiggle)
 
 
+
 # called on click of the start button
 def startproc(root, status_circle: tkinter.Canvas) -> None:
     global process
@@ -41,6 +42,7 @@ def startproc(root, status_circle: tkinter.Canvas) -> None:
         info("mouse jiggler already running")
         return;
     else:
+        process = multiprocessing.Process(target=jiggle)
         process.start()
         # this changes the color of the little square to green
         # to indicate that the process is running
