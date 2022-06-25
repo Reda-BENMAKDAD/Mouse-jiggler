@@ -7,7 +7,6 @@ from functools import partial
 
 root = tkinter.Tk() # the main window is created outside the main function for reachability reasons
 
-
 monitor_width = pyautogui.size()[0]
 monitor_height = pyautogui.size()[1]
 
