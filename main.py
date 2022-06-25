@@ -5,7 +5,7 @@ from time import sleep
 from random import randint
 from functools import partial
 
-root = tkinter.Tk() # the main window 
+root = tkinter.Tk() # the main window is created outside the main function for reachability reasons
 
 
 monitor_width = pyautogui.size()[0]
@@ -37,13 +37,13 @@ def jiggle() -> None:
         sleep(5)
         pyautogui.press('backspace')
 
-# here the jiggle function will be ran in a separate process
-# to avoid blocking the main thread
+# since the main function is blocking
+# it is ran in a different process to avoid blocking the main thread
 process = multiprocessing.Process(target=jiggle)
 
 
 
-# called on click of the start button
+# called on click of the start button and starts the jiggle process
 def startproc(status_circle: tkinter.Canvas) -> None:
     global root
     global process
@@ -51,6 +51,7 @@ def startproc(status_circle: tkinter.Canvas) -> None:
         info("mouse jiggler already running")
         return;
     else:
+        # process variable is redefined since you can't restart a terminated process
         process = multiprocessing.Process(target=jiggle)
         process.start()
         # this changes the color of the little square to green
@@ -95,7 +96,7 @@ def main():
     status_circle.place(x=280, y=15)
     btn_giggle = tkinter.Button(root, text="start", command=partial(startproc, status_circle))
     btn_giggle.place(x=70, y=70)
-    btn_stop = tkinter.Button(root, text="Stop", command=partial(stopproc, status_circle))
+    btn_stop = tkinter.Button(root, text="stop", command=partial(stopproc, status_circle))
     btn_stop.place(x=190, y=70)
     root.protocol("WM_DELETE_WINDOW", safe_close)
 
