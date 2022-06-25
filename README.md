@@ -21,8 +21,6 @@ pip install -r requirements.txt
 ```
 
 _and you are good to go!_ &nbsp; you can now run the app by running the following command in the terminal:
-
-<br>
   
 ```bash
     python main.py
