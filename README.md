@@ -10,7 +10,7 @@
 
 ### _steps to install the app_ :
 
-1) if you don't already have it installed, install the python interpreter from the [python.org](https://www.python.org/downloads/)
+1) if you don't already have it installed, install the python interpreter from [python.org](https://www.python.org/downloads/)
 
 2) then install the dependecies by running the following command in the terminal:
 
