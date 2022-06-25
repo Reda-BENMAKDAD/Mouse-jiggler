@@ -5,6 +5,9 @@ from time import sleep
 from random import randint
 from functools import partial
 
+root = tkinter.Tk() # the main window 
+
+
 monitor_width = pyautogui.size()[0]
 monitor_height = pyautogui.size()[1]
 
@@ -21,13 +24,18 @@ def info(message):
 
 
 # the function that jiggles the mouse
-def jiggle():
+def jiggle() -> None:
     while True:
         x = randint(0, monitor_width)
         y = randint(0, monitor_height)
         pyautogui.moveTo(x, y, 0.25)
-        sleep(20)
-        
+        sleep(5)
+        pyautogui.press('shift')
+
+        sleep(5)       
+        pyautogui.press('b')
+        sleep(5)
+        pyautogui.press('backspace')
 
 # here the jiggle function will be ran in a separate process
 # to avoid blocking the main thread
@@ -36,7 +44,8 @@ process = multiprocessing.Process(target=jiggle)
 
 
 # called on click of the start button
-def startproc(root, status_circle: tkinter.Canvas) -> None:
+def startproc(status_circle: tkinter.Canvas) -> None:
+    global root
     global process
     if process.is_alive():
         info("mouse jiggler already running")
@@ -51,7 +60,8 @@ def startproc(root, status_circle: tkinter.Canvas) -> None:
         root.update()
 
 # called on click of the stop button
-def stopproc(root, status_circle) -> None:
+def stopproc(status_circle) -> None:
+    global root
     global process
     if not process.is_alive():
         info("mouse jiggler is not running")
@@ -66,7 +76,8 @@ def stopproc(root, status_circle) -> None:
  
 # this function is called when the window is closed from the X button
 # it stops the jiggle process and closes the window
-def safe_close(root) -> None :
+def safe_close() -> None :
+    global root
     global process
     if process.is_alive():
         process.terminate()  
@@ -75,19 +86,18 @@ def safe_close(root) -> None :
 
 # main function that runs the main window
 def main():
-    root = tkinter.Tk()
+    global root
     root.title("Mouse jiggler")
     root.iconbitmap("./assets/mouse-icon.ico")
     root.configure(background="#7f7dfa")
     root.geometry("310x150")
     status_circle = tkinter.Canvas(root, width=10, height=10, bg="#6b706c", borderwidth=0, highlightthickness=0)
     status_circle.place(x=280, y=15)
-
-    btn_giggle = tkinter.Button(root, text="start", command=partial(startproc, root, status_circle))
+    btn_giggle = tkinter.Button(root, text="start", command=partial(startproc, status_circle))
     btn_giggle.place(x=70, y=70)
-    btn_stop = tkinter.Button(root, text="Stop", command=partial(stopproc, root, status_circle))
+    btn_stop = tkinter.Button(root, text="Stop", command=partial(stopproc, status_circle))
     btn_stop.place(x=190, y=70)
-    root.protocol("WM_DELETE_WINDOW", partial(safe_close, root))
+    root.protocol("WM_DELETE_WINDOW", safe_close)
 
     root.mainloop()
 
