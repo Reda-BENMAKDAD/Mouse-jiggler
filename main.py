@@ -36,7 +36,7 @@ def jiggle() -> None:
         sleep(5)
         pyautogui.press('backspace')
 
-# since the main function is blocking
+# since the jiggler function is blocking
 # it is ran in a different process to avoid blocking the main thread
 process = multiprocessing.Process(target=jiggle)
 
