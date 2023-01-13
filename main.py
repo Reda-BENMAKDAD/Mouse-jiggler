@@ -1,3 +1,5 @@
+# ok disclaimer: This code is heavily commented because i forget really quickly why i wrote some things, cheers.
+
 import tkinter
 import pyautogui
 import multiprocessing
