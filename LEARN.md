@@ -8,6 +8,6 @@ i got the idea to create this Mouse-jiggler because i saw people using ***MECHAN
 2. __Coding__:
 ok so when i started coding i said to my self, __"it's going to be really easy, matter of not even an hour"__, and as programmers, you know guys that it's never like that. it ended-up taking me like a whole day, but i learned a lot about threads and how they work and it was really fun. aside from that i don't have too much to say.
 
-3. __Overall__: i have nothing to add, i'am just writing this so i can publish it on the community exchange. and if you want to add some feature or something feel free to create pull-requests guys.
+3. __Overall__: it mays look like a simple thing, but you learn a lot from this little projects. anyway if you want to add some feature or something feel free to create pull-requests guys.
 
 ### Bye!
