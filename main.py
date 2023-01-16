@@ -49,6 +49,7 @@ def startproc(status_circle: tkinter.Canvas) -> None:
     global root
     global process
     if process.is_alive():
+        root.bell()
         info("mouse jiggler already running")
         return;
     else:
@@ -66,6 +67,7 @@ def stopproc(status_circle) -> None:
     global root
     global process
     if not process.is_alive():
+        root.bell()
         info("mouse jiggler is not running")
         return;
     else :
